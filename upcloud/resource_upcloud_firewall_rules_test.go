@@ -227,22 +227,20 @@ func testUpcloudFirewallRulesInstanceConfig() string {
 		  zone     = "fi-hel1"
 		  hostname = "debian.example.com"
 		  plan     = "1xCPU-2GB"
-		
-		  storage_devices {
-			action = "create"
-			size   = 10
-			tier   = "maxiops"
-		  }
+
+			template {
+      storage = "01000000-0000-4000-8000-000020050100"
+			}
 
 		  network_interface {
-			type = "utility"
+      type = "utility"
 		  }
 
 		}
 
 		resource "upcloud_firewall_rules" "my_server" {
 		  server_id = upcloud_server.my_server.id
-		
+
 		  firewall_rule {
 			action = "accept"
 			comment = "Allow SSH from this network"
@@ -267,22 +265,20 @@ func testUpcloudFirewallRulesInstanceConfig_update() string {
 		  zone     = "fi-hel1"
 		  hostname = "debian.example.com"
 		  plan     = "1xCPU-2GB"
-		
-		  storage_devices {
-			action = "create"
-			size   = 10
-			tier   = "maxiops"
-		  }
+
+			template {
+      storage = "01000000-0000-4000-8000-000020050100"
+			}
 
 		  network_interface {
-			type = "utility"
+      type = "utility"
 		  }
 
 		}
 
 		resource "upcloud_firewall_rules" "my_server" {
 		  server_id = upcloud_server.my_server.id
-		
+
 		  firewall_rule {
 			action = "accept"
 			comment = "Allow SSH from this network"
@@ -297,7 +293,7 @@ func testUpcloudFirewallRulesInstanceConfig_update() string {
 			source_address_end = "192.168.1.255"
 			source_address_start = "192.168.1.1"
 		  }
-		
+
 		  firewall_rule {
 			action = "accept"
 			comment = "Allow SSH from this network"
